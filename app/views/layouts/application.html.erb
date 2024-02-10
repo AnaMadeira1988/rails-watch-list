@@ -11,6 +11,23 @@
   </head>
 
   <body>
+    <nav class="navbar">
+      <div class="container-fluid mx-0 px-0">
+        <%= link_to lists_path do %>
+          <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/06/Movie-Logo-Cinema-PNG.png" alt="Bootstrap" style="padding: 15px" width="130px" height="130px">
+        <% end %>
+        <figure class="m-0" style="margin-right: 20px !important;">
+          <blockquote class="blockquote">
+            <h1>Cinefile Log</h1>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Feed your soul.
+          </figcaption>
+        </figure>
+      </div>
+    </nav>
+
     <%= yield %>
+
   </body>
 </html>

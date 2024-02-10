@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="border p-4">
+        <%= simple_form_for [list, bookmark] do |f| %>
+          <div class="mb-3">
+            <label for="bookmark_movie_id" class="form-label">Select a movie:</label>
+            <%= f.collection_select :movie_id, @movies, :id, :title, { prompt: true }, class: "form-select" %>
+          </div>
+          <div class="mb-3">
+            <%= f.input :comment, label: "Comment" %>
+          </div>
+
+          <% if @bookmark.movie.present? %>
+            <%= f.hidden_field :poster_url, value: @bookmark.movie.poster_url %>
+            <%= f.hidden_field :rating, value: @bookmark.movie.rating %>
+            <%= f.hidden_field :overview, value: @bookmark.movie.overview %>
+          <% end %>
+
+          <%= f.submit "Save", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
