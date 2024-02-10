@@ -18,9 +18,14 @@
 <div class="container">
   <div class="row row-cols-3 d-flex justify-content-center grid gap-3 column-gap-3">
     <% @list.bookmarks.each do |b| %>
-      <div class="col card" style="width: 18rem; border: none;">
-        <div class="card-img-container" style="height: 400px; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 5px;">
-          <img src="<%= b.movie.poster_url %>" class="card-img-top" style="height: 100%; object-fit: cover;" alt="<%= b.movie.title %>">
+      <div class="col card position-relative" style="width: 18rem; border: none;">
+        <div class="position-absolute top-0 end-0 p-3 delete-icon" style="opacity: 0.5;">
+          <%= form_with(model: b, url: bookmark_path(b), method: :delete, local: true) do |form| %>
+            <button type="submit" class="btn btn-link"><i class="fa-solid fa-trash-can" style="color: #aaadb1;"></i></button>
+          <% end %>
+        </div>
+        <div class="card-img-container mt-2" style="height: 400px; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 5px;">
+          <img src="<%= b.movie.poster_url %>" class="card-img-top" style="height: 100%; object-fit: cover; margin-top: 0.5rem;" alt="<%= b.movie.title %>">
         </div>
         <div class="card-body">
           <h5 class="card-title">
@@ -33,15 +38,11 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><i class="fa-solid fa-quote-left fa-sm" style="color: #474748;"></i> <%= b.comment %></li>
         </ul>
-        <div class="row">
-          <div class="col d-flex justify-content-end">
-            <button type="button" class="btn btn-outline-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</button>
-          </div>
-        </div>
       </div>
     <% end %>
   </div>
 </div>
+
 
 <div class="container mt-5">
   <div class="row justify-content-center">
